@@ -1,0 +1,321 @@
+<html lang="es" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Interactivo: "La salud enferma" de Fernando Fabiani</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-link:hover {
+            color: #f59e0b; /* amber-500 */
+        }
+        .nav-link.active {
+            color: #f59e0b; /* amber-500 */
+            border-bottom-color: #f59e0b; /* amber-500 */
+        }
+        .tab-btn.active {
+            background-color: #ca8a04; /* amber-600 */
+            color: #ffffff;
+        }
+        .download-btn {
+            @apply bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105;
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.sticky{position:sticky}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-10{margin-bottom:2.5rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mt-1{margin-top:0.25rem}.mt-16{margin-top:4rem}.mt-2{margin-top:0.5rem}.flex{display:flex}.grid{display:grid}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.flex-grow{flex-grow:1}.scroll-mt-20{scroll-margin-top:5rem}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.scroll-smooth{scroll-behavior:smooth}.rounded-lg{border-radius:0.5rem}.rounded-b-lg{border-bottom-right-radius:0.5rem;border-bottom-left-radius:0.5rem}.rounded-t-md{border-top-left-radius:0.375rem;border-top-right-radius:0.375rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-l-4{border-left-width:4px}.border-t{border-top-width:1px}.border-t-0{border-top-width:0px}.border-amber-500{--tw-border-opacity:1;border-color:rgb(245 158 11 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-transparent{border-color:transparent}.bg-amber-100{--tw-bg-opacity:1;background-color:rgb(254 243 199 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.p-6{padding:1.5rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-1{padding-bottom:0.25rem}.pl-4{padding-left:1rem}.text-center{text-align:center}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.italic{font-style:italic}.text-amber-500{--tw-text-opacity:1;color:rgb(245 158 11 / var(--tw-text-opacity, 1))}.text-amber-600{--tw-text-opacity:1;color:rgb(217 119 6 / var(--tw-text-opacity, 1))}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9 / var(--tw-text-opacity, 1))}.text-amber-800{--tw-text-opacity:1;color:rgb(146 64 14 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}@media (min-width: 640px){.sm\:space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}}@media (min-width: 768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.md\:space-y-0 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0px * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0px * var(--tw-space-y-reverse))}.md\:border-b-0{border-bottom-width:0px}.md\:border-r{border-right-width:1px}.md\:p-8{padding:2rem}.md\:py-12{padding-top:3rem;padding-bottom:3rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}}</style></head>
+<body class="text-slate-700">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+            <h1 class="font-bold text-xl text-slate-800">Análisis: <span class="text-amber-600">La salud enferma</span></h1>
+            <div class="flex-grow md:flex justify-center space-x-2 sm:space-x-4 md:space-x-8">
+                <a href="#paradoja" class="nav-link pb-1 border-b-2 border-transparent text-sm md:text-base">La Paradoja</a>
+                <a href="#criticas" class="nav-link pb-1 border-b-2 border-transparent text-sm md:text-base">Las Críticas</a>
+                <a href="#acogida" class="nav-link pb-1 border-b-2 border-transparent text-sm md:text-base">La Acogida</a>
+                <a href="#impacto" class="nav-link pb-1 border-b-2 border-transparent text-sm md:text-base">El Impacto</a>
+            </div>
+            <button id="downloadBtn" class="download-btn">Descargar HTML</button>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-12">
+
+        <section id="hero" class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">La paradoja de nuestro tiempo: ¿Nos enferma la búsqueda de la salud perfecta?</h2>
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto mb-6">Un análisis interactivo del libro "La salud enferma" de Fernando Fabiani, una obra que desafía nuestra obsesión contemporánea por el bienestar y desvela cómo esta búsqueda incesante puede, irónicamente, llevarnos a perder la salud.</p>
+            <blockquote class="max-w-2xl mx-auto text-xl italic text-amber-700 border-l-4 border-amber-500 pl-4">
+                "Perseguir la salud de manera obsesiva es la vía más rápida para perderla."
+            </blockquote>
+        </section>
+
+        <section id="paradoja" class="mb-16 scroll-mt-20">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-slate-800">La Tesis Central: Una "Trampa Perfecta"</h3>
+                <p class="mt-2 text-slate-600 max-w-2xl mx-auto">El libro argumenta que hemos idealizado la salud hasta convertirla en un estado absoluto, inalcanzable. Esta sección explora la idea central de que sentirnos constantemente "enfermos" es una consecuencia directa de no alcanzar ese ideal ficticio.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-xl mb-2 text-amber-600">El Ideal Inalcanzable</h4>
+                    <p class="text-slate-600">La sociedad moderna promueve un concepto de salud libre de todo riesgo y sufrimiento. Fabiani describe esto como una "trampa perfecta" que nos condena a una sensación de fracaso constante cuando la realidad (un resfriado, un mal día) se impone.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-xl mb-2 text-amber-600">El Autor: Médico y Comunicador</h4>
+                    <p class="text-slate-600">Fernando Fabiani, médico de familia con casi dos décadas de experiencia en la sanidad pública, combina su práctica clínica con una notable carrera como divulgador. Su estilo, forjado con humor y un lenguaje directo, le permite conectar con el público y desmitificar la medicina.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="criticas" class="mb-16 scroll-mt-20">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-slate-800">Las 3 Críticas a la Sociedad del Bienestar</h3>
+                <p class="mt-2 text-slate-600 max-w-2xl mx-auto">Fabiani articula una crítica multifacética a nuestra cultura de la salud. Interactúa con las siguientes pestañas para explorar los tres pilares de su argumentación: la mercantilización del miedo, la negación del malestar y el impacto de la tecnología.</p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-4 flex flex-wrap justify-center border-b border-slate-200">
+                    <button class="tab-btn px-4 py-2 text-slate-600 font-semibold rounded-t-md active" onclick="openTab(event, 'Mercantilismo')">1. Mercantilización del Miedo</button>
+                    <button class="tab-btn px-4 py-2 text-slate-600 font-semibold rounded-t-md" onclick="openTab(event, 'Malestar')">2. El Derecho a Sentirse Mal</button>
+                    <button class="tab-btn px-4 py-2 text-slate-600 font-semibold rounded-t-md" onclick="openTab(event, 'Digital')">3. Hipervigilancia Digital</button>
+                </div>
+                <div id="Mercantilismo" class="tab-content p-6 bg-white rounded-b-lg shadow-sm border border-t-0 border-slate-200">
+                    <h4 class="font-bold text-xl mb-3 text-amber-600">El Miedo a la Enfermedad Vende</h4>
+                    <p class="text-slate-600">Fabiani denuncia cómo el miedo es instrumentalizado para vender productos y servicios: desde suplementos y "súper alimentos" hasta seguros y chequeos innecesarios. Se nos vende la idea de que la salud se compra, cuando en realidad, argumenta, se encuentra en hábitos sencillos como "ir al parque y al mercado". Esta crítica conecta directamente con el debate sobre la medicalización de la vida, donde la industria se beneficia de convertir procesos normales en problemas que requieren una solución de consumo.</p>
+                </div>
+                <div id="Malestar" class="tab-content p-6 bg-white rounded-b-lg shadow-sm border border-t-0 border-slate-200" style="display:none">
+                    <h4 class="font-bold text-xl mb-3 text-amber-600">Un Concepto Subversivo</h4>
+                    <p class="text-slate-600">El libro introduce una idea radical: "sentirse mal es un derecho que la sociedad nos está robando". En un mundo obsesionado con el pensamiento positivo y la felicidad constante, el malestar (físico o emocional) se ve como un fracaso personal. Fabiani defiende que es una parte inevitable y normal de la experiencia humana. Aceptar que a veces "toca estar mal" es un acto de liberación contra la tiranía de la perfección, una herramienta de empoderamiento que alivia la carga de tener que estar siempre bien.</p>
+                </div>
+                <div id="Digital" class="tab-content p-6 bg-white rounded-b-lg shadow-sm border border-t-0 border-slate-200" style="display:none">
+                    <h4 class="font-bold text-xl mb-3 text-amber-600">Hipervigilancia Digital</h4>
+                    <p class="text-slate-600">La tecnología agrava la obsesión por la salud. Por un lado, Google, como "médico de cabecera", fomenta la hipervigilancia de síntomas y genera ansiedad al destacar los peores escenarios. Por otro, las redes sociales promueven una "comparación constante" y una imagen corporal distorsionada a través de los filtros. Fabiani advierte de un problema real que ve en su consulta: la "dismorfia digital", donde los jóvenes buscan parecerse a su imagen filtrada, afectando gravemente su autoestima.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="acogida" class="mb-16 scroll-mt-20">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-slate-800">Recepción y Acogida del Libro</h3>
+                 <p class="mt-2 text-slate-600 max-w-2xl mx-auto">La obra ha resonado fuertemente tanto en la crítica profesional como en el público general. Esta sección visualiza su éxito a través de las valoraciones de los lectores y resume los aspectos más elogiados que explican su excelente acogida.</p>
+            </div>
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-sm border border-slate-200 mb-10">
+                <h4 class="text-xl font-bold text-center mb-4 text-slate-800">Valoraciones de Lectores</h4>
+                <div class="chart-container">
+                    <canvas id="ratingsChart" width="1308" height="700" style="display: block; box-sizing: border-box; height: 350px; width: 654px;"></canvas>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                    <div class="text-amber-500 text-4xl mb-3">🎨</div>
+                    <h4 class="font-bold text-lg mb-1">Estilo y Tono</h4>
+                    <p class="text-sm text-slate-600">"Ameno", "divertido" y "muy práctico". El humor facilita la comprensión de temas complejos.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                    <div class="text-amber-500 text-4xl mb-3">🎯</div>
+                    <h4 class="font-bold text-lg mb-1">Relevancia</h4>
+                    <p class="text-sm text-slate-600">"Indispensable en estos días". Aborda una preocupación actual y muy real para el lector.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                    <div class="text-amber-500 text-4xl mb-3">🤔</div>
+                    <h4 class="font-bold text-lg mb-1">Capacidad de Reflexión</h4>
+                    <p class="text-sm text-slate-600">"Te hace pararte y pensar". Provoca una introspección que puede cambiar la perspectiva.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                    <div class="text-amber-500 text-4xl mb-3">💡</div>
+                    <h4 class="font-bold text-lg mb-1">Mensaje Principal</h4>
+                    <p class="text-sm text-slate-600">"El mejor doctor es el sentido común". Empodera al lector y reduce la sobreinformación.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="impacto" class="scroll-mt-20">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-slate-800">Impacto Social y Cultural</h3>
+                <p class="mt-2 text-slate-600 max-w-2xl mx-auto">Más allá de ser un libro de divulgación, "La salud enferma" funciona como una herramienta de salud pública y dialoga con debates académicos complejos. Esta sección conecta las ideas de Fabiani con discursos sociológicos más amplios, demostrando su profundidad y relevancia.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-6 bg-slate-100">
+                        <h4 class="font-bold text-lg text-slate-800">Crítica Popular de Fabiani</h4>
+                    </div>
+                    <div class="p-6 bg-amber-100">
+                        <h4 class="font-bold text-lg text-amber-800">Correlación con el Discurso Académico</h4>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 border-t border-slate-200">
+                    <div class="p-6 border-b md:border-b-0 md:border-r border-slate-200">
+                        <p class="font-semibold">La obsesión por la salud perfecta.</p>
+                        <p class="text-sm text-slate-600">"Una sociedad que idealiza la salud y, al mismo tiempo, te hace sentir enfermo".</p>
+                    </div>
+                    <div class="p-6">
+                        <p class="font-semibold">La "salud-enferma" como construcción social.</p>
+                        <p class="text-sm text-slate-600">Concepto sociológico de la salud como una nueva "religión laica" y su trivialización en ciertos grupos.</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 border-t border-slate-200">
+                    <div class="p-6 border-b md:border-b-0 md:border-r border-slate-200">
+                        <p class="font-semibold">La denuncia de los chequeos masivos.</p>
+                        <p class="text-sm text-slate-600">"Si estás aún sano es porque no has sido suficientemente estudiado".</p>
+                    </div>
+                    <div class="p-6">
+                        <p class="font-semibold">Controversias del cribado de enfermedades.</p>
+                        <p class="text-sm text-slate-600">Debate ético y clínico sobre campañas de prevención masiva cuya evidencia de beneficio no siempre es sólida.</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 border-t border-slate-200">
+                    <div class="p-6 border-b md:border-b-0 md:border-r border-slate-200">
+                        <p class="font-semibold">El impacto de los filtros en la autoimagen.</p>
+                        <p class="text-sm text-slate-600">"Personas que quieren parecerse a ellas con filtro".</p>
+                    </div>
+                    <div class="p-6">
+                        <p class="font-semibold">Dismorfia digital.</p>
+                        <p class="text-sm text-slate-600">Un tema de investigación emergente en psicología y sociología sobre el impacto de la tecnología en la salud mental.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 mt-16">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>Aplicación interactiva basada en el informe experto sobre "La salud enferma" de Fernando Fabiani.</p>
+            <p class="text-sm text-slate-400 mt-1">Diseñado para la exploración y divulgación del conocimiento.</p>
+        </div>
+    </footer>
+
+    <script>
+        function openTab(event, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            event.currentTarget.className += " active";
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('ratingsChart').getContext('2d');
+            const ratingsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Goodreads (Listado 1)', 'Goodreads (Listado 2)', 'Casa del Libro'],
+                    datasets: [{
+                        label: 'Valoración Media (sobre 5)',
+                        data: [4.43, 4.14, 4.0],
+                        backgroundColor: [
+                            'rgba(245, 158, 11, 0.6)', // amber-500
+                            'rgba(217, 119, 6, 0.6)', // amber-600
+                            'rgba(180, 83, 9, 0.6)'  // amber-700
+                        ],
+                        borderColor: [
+                            'rgba(245, 158, 11, 1)',
+                            'rgba(217, 119, 6, 1)',
+                            'rgba(180, 83, 9, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 5,
+                            grid: {
+                                color: 'rgba(203, 213, 225, 0.5)'
+                            }
+                        },
+                        y: {
+                           grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` ${context.dataset.label}: ${context.raw} de 5`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.4
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Función para descargar el archivo HTML
+            const downloadBtn = document.getElementById('downloadBtn');
+            downloadBtn.addEventListener('click', () => {
+                const htmlContent = document.documentElement.outerHTML;
+                const blob = new Blob([htmlContent], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'la_salud_enferma_analisis.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        });
+    </script>
+
+
+
+</body></html>
